@@ -65,4 +65,4 @@ vendor/               third-party libraries and their licenses
 ## Third-party code
 
 Any open source library goes into `vendor/`, along with its license. The
-launcher and PIN Cracker don't use any libraries at the moment.
+launcher and the games don't use any libraries at the moment.

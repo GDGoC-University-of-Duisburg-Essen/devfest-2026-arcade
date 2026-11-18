@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Packet Blaster // DevFest 2026</title>
+  <link rel="stylesheet" href="../../shared/theme.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <main id="stage" class="stage">
+    <div id="screen" class="screen">
+      <canvas id="game" aria-label="Packet Blaster game area"></canvas>
+
+      <!-- Title screen -->
+      <section id="title" class="overlay title">
+        <h1 class="glitch" data-text="PACKET BLASTER">PACKET BLASTER</h1>
+        <p class="tagline">Defend the cloud cluster for <b>90 seconds</b>. Block the attacks, let real users through.</p>
+
+        <div class="cols">
+          <table class="legend">
+            <tr>
+              <td><span class="chip legit">GET /home</span></td>
+              <td>Legit user</td>
+              <td class="ok">don't shoot · +50</td>
+            </tr>
+            <tr>
+              <td><span class="chip inj">' OR 1=1</span></td>
+              <td>Injection</td>
+              <td><kbd>1</kbd> Input Sanitizer · +100</td>
+            </tr>
+            <tr>
+              <td><span class="chip iam">◆ Leaked JWT</span></td>
+              <td>IAM exploit</td>
+              <td><kbd>2</kbd> Zero-Trust Beam · +150</td>
+            </tr>
+            <tr>
+              <td><span class="chip ddos">●●● SYN Flood</span></td>
+              <td>DDoS swarm</td>
+              <td><kbd>3</kbd> Rate-Limiter · +25/bot</td>
+            </tr>
+          </table>
+
+          <div class="board">
+            <h3>TOP OPERATORS</h3>
+            <ol id="title-board"></ol>
+          </div>
+        </div>
+
+        <p class="controls">
+          <kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> move ·
+          <kbd>Space</kbd> / click fire ·
+          <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd>, right-click or wheel: switch tool ·
+          <kbd>M</kbd> sound
+        </p>
+        <p class="note">The wrong tool bounces off. Every attack that reaches the cluster costs one uptime bar.</p>
+        <p class="start blink">&gt; press SPACE or click to start_</p>
+      </section>
+
+      <!-- Game over screen -->
+      <section id="over" class="overlay over" hidden>
+        <div class="over-cols">
+          <div class="over-main">
+            <h2 id="over-title"></h2>
+            <p class="final"><span id="over-score">0</span> <small>points</small></p>
+            <ul id="over-stats" class="stats"></ul>
+            <form id="name-form" class="name-form" autocomplete="off" hidden>
+              <label for="name">New high score! Your handle:</label>
+              <div>
+                <input id="name" maxlength="12" spellcheck="false" placeholder="anon">
+                <button class="btn" type="submit">Save</button>
+              </div>
+            </form>
+          </div>
+          <div class="board">
+            <h3>TOP OPERATORS</h3>
+            <ol id="over-board"></ol>
+          </div>
+        </div>
+        <p class="lesson">
+          Lesson: there's no single silver bullet. Injection needs input validation,
+          identity attacks need zero trust and least privilege, and DDoS needs rate
+          limiting. None of them should block your real users.
+        </p>
+        <div class="actions">
+          <button class="btn" id="again">Play again</button>
+          <button class="btn" id="exit">Launcher</button>
+        </div>
+        <p class="hint"><kbd>Enter</kbd> play again · <kbd>Esc</kbd> launcher</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../shared/kiosk.js" data-idle="120"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -28,5 +28,15 @@ window.DEVFEST_GAMES = [
     tags: ["brute force", "side channels"],
     duration: "2 min",
     difficulty: 1
+  },
+  {
+    id: "packet-blaster",
+    title: "Packet Blaster",
+    path: "games/packet-blaster/index.html",
+    description: "Block attacks, let real users through.",
+    icon: "games/packet-blaster/icon.svg",
+    tags: ["shooter", "injection", "iam", "zero trust", "ddos", "rate limiting"],
+    duration: "90 sec",
+    difficulty: 2
   }
 ];

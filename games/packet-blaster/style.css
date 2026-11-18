@@ -1,0 +1,122 @@
+html, body { height: 100%; overflow: hidden; }
+body { background: #020507; }
+
+.stage {
+  height: calc(100vh - var(--kiosk-bar-h, 0px));
+  display: grid; place-items: center;
+}
+
+/* Sized by game.js to the largest 16:10 box that fits. --s is the scale
+   factor, so overlay text scales together with the canvas. */
+.screen {
+  --s: 1;
+  position: relative;
+  font-size: calc(var(--s) * 15px);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 40px rgba(57, 255, 136, 0.08);
+  user-select: none;
+}
+canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+/* ---------- overlays ---------- */
+.overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.7em;
+  padding: 1.2em 2em;
+  background: rgba(3, 6, 9, 0.88);
+  text-align: center;
+}
+.overlay p { margin: 0; }
+.overlay h3 {
+  margin: 0 0 0.4em; font-size: 0.8em; font-weight: normal;
+  color: var(--dim); letter-spacing: 0.15em;
+}
+
+.title h1 { margin: 0; font-size: 3.6em; line-height: 1.1; }
+.tagline { font-size: 1.05em; }
+.tagline b { color: var(--cyan); font-weight: normal; }
+
+.cols { display: flex; align-items: flex-start; gap: 2em; margin: 0.4em 0; }
+
+.legend { border-collapse: separate; border-spacing: 0 0.45em; text-align: left; }
+.legend td { padding: 0 0.7em; vertical-align: middle; }
+.legend td:nth-child(2) { color: var(--fg); }
+.legend td:nth-child(3) { color: var(--dim); font-size: 0.9em; }
+.legend .ok { color: var(--green) !important; }
+
+.chip {
+  display: inline-block;
+  padding: 0.15em 0.7em;
+  font-weight: bold; font-size: 0.85em; white-space: nowrap;
+  border: 2px solid currentColor;
+}
+.chip.legit { color: var(--green); border-radius: 1em; background: rgba(57, 255, 136, 0.12); }
+.chip.inj   { color: var(--cyan);  background: rgba(62, 240, 255, 0.12); }
+.chip.iam   {
+  color: var(--amber); border: 0; padding: 0.3em 1.2em;
+  background: rgba(255, 201, 74, 0.2);
+  clip-path: polygon(0 50%, 0.8em 0, calc(100% - 0.8em) 0, 100% 50%, calc(100% - 0.8em) 100%, 0.8em 100%);
+}
+.chip.ddos  { color: var(--red); border: 0; padding-left: 0; }
+
+.controls { color: var(--dim); font-size: 0.85em; }
+.note { color: var(--dim); font-size: 0.8em; }
+.start { color: var(--cyan); font-size: 1.15em; margin-top: 0.3em !important; }
+
+/* ---------- leaderboard ---------- */
+.board {
+  min-width: 15em;
+  padding: 0.7em 1em;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: rgba(10, 20, 26, 0.7);
+  text-align: left;
+}
+.board ol { list-style: none; margin: 0; padding: 0; font-size: 0.9em; }
+.board li { display: flex; gap: 0.6em; line-height: 1.55; color: var(--fg); }
+.board li .r { color: var(--dim); width: 2ch; text-align: right; }
+.board li .n { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board li .p { color: var(--cyan); font-variant-numeric: tabular-nums; }
+.board li.me { color: var(--green); text-shadow: var(--glow); }
+.board li.me .p { color: var(--green); }
+.board .empty { color: var(--dim); }
+
+/* ---------- game over ---------- */
+.over-cols { display: flex; align-items: flex-start; gap: 2.5em; }
+.over-main { display: flex; flex-direction: column; align-items: center; gap: 0.6em; min-width: 22em; }
+.over h2 { margin: 0; font-size: 2.4em; letter-spacing: 0.1em; }
+.over h2.win  { color: var(--green); text-shadow: var(--glow); }
+.over h2.lose { color: var(--red); }
+.final { font-size: 2.6em; color: var(--cyan); line-height: 1; }
+.final small { font-size: 0.4em; color: var(--dim); }
+
+.stats { list-style: none; margin: 0; padding: 0; width: 100%; font-size: 0.9em; }
+.stats li { display: flex; justify-content: space-between; gap: 2em; color: var(--dim); }
+.stats li b { color: var(--fg); font-weight: normal; }
+.stats li.bad b { color: var(--red); }
+.stats li.good b { color: var(--green); }
+
+.name-form label { display: block; color: var(--amber); margin-bottom: 0.3em; }
+.name-form div { display: flex; gap: 0.5em; justify-content: center; }
+.name-form input {
+  width: 12ch;
+  padding: 0.35em 0.6em;
+  background: var(--bg); color: var(--green);
+  border: 1px solid var(--green); border-radius: var(--radius);
+  font: inherit; text-transform: uppercase;
+  outline: none; box-shadow: var(--glow);
+}
+.name-form .btn { padding: 0.35em 0.9em; font-size: 0.9em; }
+
+.lesson {
+  max-width: 46em;
+  padding: 0.6em 0.9em;
+  border-left: 3px solid var(--cyan);
+  background: rgba(62, 240, 255, 0.05);
+  font-size: 0.85em; text-align: left;
+}
+.actions { display: flex; gap: 0.8em; }
+.actions .btn { font-size: 0.95em; }
+.hint { color: var(--dim); font-size: 0.75em; }
+
+[hidden] { display: none !important; }

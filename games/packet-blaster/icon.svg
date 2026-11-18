@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Packet Blaster">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1f27"/>
+      <stop offset="1" stop-color="#04070a"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3ef0ff"/>
+      <stop offset="1" stop-color="#39ff88"/>
+    </linearGradient>
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M8 0H0V8" fill="none" stroke="#3ef0ff" stroke-opacity=".09"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- tile -->
+  <rect width="128" height="128" rx="22" fill="url(#bg)"/>
+  <rect width="128" height="128" rx="22" fill="url(#grid)"/>
+  <rect x="1.5" y="1.5" width="125" height="125" rx="20.5" fill="none" stroke="#39ff88" stroke-opacity=".3" stroke-width="2"/>
+
+  <!-- HUD corners -->
+  <g fill="none" stroke="#3ef0ff" stroke-width="2.5" stroke-opacity=".7" stroke-linecap="round">
+    <path d="M14 26V14h12"/><path d="M114 26V14h-12"/>
+    <path d="M14 102v12h12"/><path d="M114 102v12h-12"/>
+  </g>
+
+  <!-- IAM exploit: yellow diamond -->
+  <path d="M30 30l9 9-9 9-9-9z" fill="#ffc94a" fill-opacity=".2" stroke="#ffc94a" stroke-width="2.5"
+        stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- DDoS swarm: red dots -->
+  <g fill="#ff3b5c" filter="url(#glow)">
+    <circle cx="94" cy="30" r="3.2"/><circle cx="103" cy="36" r="3.2"/><circle cx="91" cy="41" r="3"/>
+    <circle cx="101" cy="46" r="2.6"/><circle cx="109" cy="28" r="2.6"/>
+  </g>
+
+  <!-- legit packet: green pill, passing safely -->
+  <rect x="16" y="66" width="28" height="12" rx="6" fill="#39ff88" fill-opacity=".15"
+        stroke="#39ff88" stroke-width="2"/>
+
+  <!-- laser -->
+  <path d="M64 84V50" stroke="#3ef0ff" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- injection payload being blasted -->
+  <g stroke="#3ef0ff" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)">
+    <rect x="53" y="30" width="22" height="14" fill="#3ef0ff" fill-opacity=".22"/>
+    <path d="M49 27l-5-5M79 27l5-5M64 24v-7M47 37h-6M81 37h6" fill="none"/>
+  </g>
+
+  <!-- turret -->
+  <rect x="60.5" y="80" width="7" height="12" fill="#3ef0ff"/>
+  <path d="M40 108l10-16h28l10 16z" fill="#0a1419" stroke="url(#neon)" stroke-width="3"
+        stroke-linejoin="round" filter="url(#glow)"/>
+</svg>
